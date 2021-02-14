@@ -1,8 +1,12 @@
-FROM ubuntu:19.04
+FROM ubuntu:20.04
 MAINTAINER Xiaoli Dong <xiaolid@gmail.com>	
 LABEL version="1.0.4"
 	
 WORKDIR /NGStools/
+
+# Set TZ
+ENV TZ=Europe/Vienna
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 #Install compiler and perl stuff
 RUN apt-get update && apt-get install -y \
@@ -97,7 +101,8 @@ RUN wget http://ebg.ucalgary.ca/metaerg/minpath1.4.tar.gz && \
     cd /NGStools
 
 #metaerg
-RUN git clone https://github.com/xiaoli-dong/metaerg.git
+#RUN git clone https://github.com/xiaoli-dong/metaerg.git
+RUN git clone https://github.com/niccw/metaerg.git
 
 # Clean
 RUN apt-get remove -y autoconf \
