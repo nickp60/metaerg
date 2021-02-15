@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 MAINTAINER Xiaoli Dong <xiaolid@gmail.com>	
 LABEL version="1.0.4"
 	
@@ -42,8 +42,9 @@ RUN apt-get update && apt-get install -y \
 #install perl modules
 #Ignore test results for XML::DOM::XPath
 RUN cpanm -f XML::DOM::XPath && \
-    cpanm Bio::Perl \
-    DBI \
+    cpanm Bio::Perl || true
+
+RUN cpanm DBI \
     Archive::Extract \
     DBD::SQLite \
     File::Copy::Recursive \
