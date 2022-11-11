@@ -623,8 +623,8 @@ sub output_geneAnnotation{
 		    my $count = $f->get_tag_values("rRNA_taxon");
 		    for (my $i = 0; $i < $count; $i++){
 			#my $name = ($f->get_tag_values("Name"))[$i];
-			my $taxon = ($f->get_tag_values("rRNA_taxon"))[$i];
-			my @row = ($featureid, $seqid, $start, $end, $len, $strand,$type, $taxon);
+                        my $count = $f->has_tag("rRNA_taxon") ? $f->get_tag_values("rRNA_taxon") : 0;
+                        my @row = ($featureid, $seqid, $start, $end, $len, $strand,$type, $taxon);
 			print {$annot_tab_file_handler{"rRNA"}} join("\t", @row), "\n";
 			$rRNA_datatable_str .= $datatable_str;
 			$rRNA_datatable_str .= (' ' x 2) . "\"taxon\": \"$taxon\"\n";
