@@ -333,8 +333,7 @@ sub output_fasta{
             if ($f->primary_tag =~ /18SrRNA/) {
                 $desc .= " \/Name=";
                 $desc .=  $f->has_tag('Name') ? TAG($f, 'Name') : "";
-                $desc .= " \/rRNA_
-		=";
+                $desc .= " \/rRNA_taxon=";
                 $desc .=  $f->has_tag('rRNA_taxon') ? TAG($f, 'rRNA_taxon') : "";
 		
                 $p->desc("$desc /cid=$sid");
