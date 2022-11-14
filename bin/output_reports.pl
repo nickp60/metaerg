@@ -202,7 +202,8 @@ sub output_stats{
             $count{$f->primary_tag}->{sprot}++ if $f->has_tag('sprot_desc');
             $count{$f->primary_tag}->{genomedb}++ if $f->has_tag('genomedb_OC');
             $count{$f->primary_tag}->{metabolic}++ if $f->has_tag('metabolic_process');
-	    $count{$f->primary_tag}->{rRNA_taxon}++ if $f->has_tag('rRNA_taxon');
+	    $count{$f->primary_tag}->{rRNA
+	    }++ if $f->has_tag('rRNA_taxon');
         }
     }
 
@@ -332,7 +333,8 @@ sub output_fasta{
             if ($f->primary_tag =~ /18SrRNA/) {
                 $desc .= " \/Name=";
                 $desc .=  $f->has_tag('Name') ? TAG($f, 'Name') : "";
-                $desc .= " \/rRNA_taxon=";
+                $desc .= " \/rRNA_
+		=";
                 $desc .=  $f->has_tag('rRNA_taxon') ? TAG($f, 'rRNA_taxon') : "";
 		
                 $p->desc("$desc /cid=$sid");
@@ -620,10 +622,9 @@ sub output_geneAnnotation{
 		    
 		}
 		if(exists $annot_tab_file_handler{"rRNA"} && $type =~ /SrRNA/){
-		    my $count = $f->get_tag_values("rRNA_taxon");
+                    my $count = $f->has_tag("rRNA_taxon") ? $f->get_tag_values("rRNA_taxon") : 0;
 		    for (my $i = 0; $i < $count; $i++){
 			#my $name = ($f->get_tag_values("Name"))[$i];
-                        my $count = $f->has_tag("rRNA_taxon") ? $f->get_tag_values("rRNA_taxon") : 0;
                         my @row = ($featureid, $seqid, $start, $end, $len, $strand,$type, $taxon);
 			print {$annot_tab_file_handler{"rRNA"}} join("\t", @row), "\n";
 			$rRNA_datatable_str .= $datatable_str;
