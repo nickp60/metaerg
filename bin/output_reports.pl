@@ -202,8 +202,7 @@ sub output_stats{
             $count{$f->primary_tag}->{sprot}++ if $f->has_tag('sprot_desc');
             $count{$f->primary_tag}->{genomedb}++ if $f->has_tag('genomedb_OC');
             $count{$f->primary_tag}->{metabolic}++ if $f->has_tag('metabolic_process');
-	    $count{$f->primary_tag}->{rRNA
-	    }++ if $f->has_tag('rRNA_taxon');
+	    $count{$f->primary_tag}->{rRNA}++ if $f->has_tag('rRNA_taxon');
         }
     }
 
